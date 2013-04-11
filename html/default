@@ -12,7 +12,7 @@ to improve your experience.
 <div class="row-fluid">
     <div class="span2"></div>
         <div class="span8">
-            <div class="page header"><h1>PLJNS.com <small>The Homepage of My Mind</small></h1></div>
+            <div class="page header"><h1>{{sitename}}</h1></div>
         </div>
     <div class="span2"></div>
 </div>

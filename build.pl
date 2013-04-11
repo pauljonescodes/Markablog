@@ -9,7 +9,7 @@ use URI::Escape;
 # Some metadata
 #
 
-my $sitename = "PLJNS.com";
+my $sitename = "Markablog";
 
 #
 # These are the base directories my engine uses
@@ -29,7 +29,6 @@ my $doctype_template = read_file($html_dir_name . '/doctype');
 my $default_template = read_file($html_dir_name . '/default');
 my $footer_template	 = read_file($html_dir_name . '/footer' );
 my $header_template	 = read_file($html_dir_name . '/header' );
-my $index_template	 = read_file($html_dir_name . '/index'	);
 my $post_template	 = read_file($html_dir_name . '/post');
 
 #
@@ -45,6 +44,11 @@ my $js_foot;
 #
 
 my @post_urls;
+
+my $find = "{{sitename}}";
+my $replace = '"$sitename"';
+$default_template =~ s/$find/$replace/ee;
+
 
 opendir( CSSDIR, $css_dir_name ) || warn "Error in opening dir $posts_dir_name\n";
 my @CSS = readdir(CSSDIR);
@@ -160,8 +164,8 @@ foreach my $currentpost (reverse(@POSTS)) {
 		# Get HTML snippet from Markdown
 		#
 		
-		my $find    = "{{meta}}";
-		my $replace = '"$meta"';
+		   $find    = "{{meta}}";
+		   $replace = '"$meta"';
 		
 		my $post_dir_escape = php_escapeshellarg($posts_dir_name . '/' . $currentpost);
 		my $post_content = qx/.\/Markdown.pl $post_dir_escape/;

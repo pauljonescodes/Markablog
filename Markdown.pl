@@ -938,7 +938,7 @@ sub _DoCodeBlocks {
 			$codeblock =~ s/\A\n+//; # trim leading newlines
 			$codeblock =~ s/\s+\z//; # trim trailing whitespace
 
-			$result = "\n\n<pre><code>" . $codeblock . "\n</code></pre>\n\n";
+			$result = "\n\n<pre class='prettyprint'><code>" . $codeblock . "\n</code></pre>\n\n";
 
 			$result;
 		}egmx;
