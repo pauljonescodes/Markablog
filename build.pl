@@ -46,7 +46,7 @@ my $js_foot;
 my @post_urls;
 
 my $find = "{{sitename}}";
-my $replace = '"$sitename"';
+my $replace = '"$sitename <small>A Simple Static Site Generator</small>"';
 $default_template =~ s/$find/$replace/ee;
 
 
@@ -71,7 +71,7 @@ my $index_count = 1;
 my $previous;
 my $next;
 
-open (INDEXHTMLFILE, ">$index_count.html");
+open (INDEXHTMLFILE, ">index.html");
 print INDEXHTMLFILE $doctype_template . "\n";
 print INDEXHTMLFILE "<head>\n";
 print INDEXHTMLFILE "<title>$sitename</title>";
@@ -97,8 +97,8 @@ foreach my $currentpost (reverse(@POSTS)) {
 				
 				print INDEXHTMLFILE "<div class = 'span8'>";
 				
-				# print INDEXHTMLFILE "<a href='$previous.html' class='btn btn-small'><i class='icon-white icon-chevron-left'></i> Previous</a>";
-				print INDEXHTMLFILE "<a href='$next.html' class='btn btn-small pull-right'>Next <i class='icon-white icon-chevron-right'></i></a>";
+				# print INDEXHTMLFILE "<a href='$previous.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a>";
+				print INDEXHTMLFILE "<a href='$next.html' class='btn pull-right'>Next <i class='icon-black icon-arrow-right'></i></a>";
 				
 				print INDEXHTMLFILE "</div>";
 				
@@ -110,8 +110,8 @@ foreach my $currentpost (reverse(@POSTS)) {
 				
 				print INDEXHTMLFILE "<div class = 'span8'>";
 				
-				print INDEXHTMLFILE "<a href='$previous.html' class='btn btn-small'><i class='icon-white icon-chevron-left'></i> Previous</a>";
-				print INDEXHTMLFILE "<a href='$next.html' class='btn btn-small pull-right'>Next <i class='icon-white icon-chevron-right'></i></a>";
+				print INDEXHTMLFILE "<a href='$previous.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a>";
+				print INDEXHTMLFILE "<a href='$next.html' class='btn pull-right'>Next <i class='icon-black icon-arrow-right'></i></a>";
 				
 				print INDEXHTMLFILE "</div>";
 				
@@ -206,19 +206,28 @@ if ($post_count % 5 != 0) {
 
 	$previous = $index_count - 1;
 	$next = $index_count + 1;
-
-	print INDEXHTMLFILE "<div class = 'row-fluid'><div class = 'span2'>";
-	print INDEXHTMLFILE "</div>";
 	
-	print INDEXHTMLFILE "<div class = 'span8'>";
+	if ($index_count > 1) {	
+		print INDEXHTMLFILE "<div class = 'row-fluid'><div class = 'span2'>";
+		print INDEXHTMLFILE "</div>";
+		
+		print INDEXHTMLFILE "<div class = 'span8'>";
+		
+		my $tmppre = "1";
+		
+		if ($previous eq 1) {
+		
+            $tmppre = 'index';
+        }	
+		
+		print INDEXHTMLFILE "<a href='$tmppre.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a>";
+		
+		print INDEXHTMLFILE "</div>";
+		
+		print INDEXHTMLFILE "<div class = 'span2'>";
+		print INDEXHTMLFILE "</div></div>";
+	}
 	
-	print INDEXHTMLFILE "<a href='$previous.html' class='btn btn-small'><i class='icon-white icon-chevron-left'></i> Previous</a>";
-	
-	print INDEXHTMLFILE "</div>";
-	
-	print INDEXHTMLFILE "<div class = 'span2'>";
-	print INDEXHTMLFILE "</div></div>";
-
 	print INDEXHTMLFILE $footer_template . "\n"; 
 	print INDEXHTMLFILE "</body>\n";
 	print INDEXHTMLFILE "</html>\n";
