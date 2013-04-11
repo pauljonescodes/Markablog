@@ -26,6 +26,13 @@ font-color:#999;
 font-weight:200;
 }
 
+h2 small {
+    font-color:#999;
+    font-weight:200;
+    float:right;
+    line-height: 35px;
+}
+
 article {
 display:block;
 font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
