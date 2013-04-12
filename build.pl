@@ -49,7 +49,7 @@ my $post_count  = 0; # counts the total number of posts
 my $index_count = 1; # counts the number of index pages, starting with index.html at 1
 my $previous    = 0; # counter used to make back and next button
 my $next        = 0; # counter used to make back and next button
-my $navlinks    = "<a href = 'index.html'>Index</a>";
+my $navlinks    = "<a href = 'http://pljns.com'>PLJNS.com</a> | <a href = 'index.html'>Project Home</a>";
 
 my $find = "{{sitename}}";
 my $replace = '"$sitename <small>Simple Static Site Generator</small>"';
