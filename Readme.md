@@ -1,12 +1,12 @@
-Markable Remarkably Simple Blogging {{meta}}
---------------------------------------------
+Markablog Remarkably Simple Blogging
+====================================
 
-### Overview
+## Overview
 
 This script accepts Markdown as input and builds a blog
 style website.
 
-### Quick start
+## Quick start
 
 You should download the source, place Markdown files in the posts
 directory, and run build.
@@ -31,7 +31,7 @@ everything else in the file is determined by you.
 
 To edit the About page, edit `about.md`.
 
-### Design Goals
+## Design Goals
 
 The design goals of this project are the same as the design goals of my website:
 
@@ -41,7 +41,7 @@ The design goals of this project are the same as the design goals of my website:
 - Cheap or free
 - Write posts in Markdown alone
 
-### Comparable Tools
+## Comparable Tools
 
 I do not at all claim to have feature parity with these services,
 but I looked into these static blog generators before deciding to 
@@ -51,7 +51,7 @@ write my own:
 - [Jekyll](https://github.com/mojombo/jekyll)
 - [Octopress](http://octopress.org)
 
-### To do
+## To do
 
 - Categories
 	- Each folder in the posts directory will be a category
