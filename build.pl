@@ -43,12 +43,14 @@ my $js_foot;
 # For building indeces
 #
 
-my @post_urls;
+my $post_count  = 0; # counts the total number of posts
+my $index_count = 1; # counts the number of index pages, starting with index.html at 1
+my $previous    = 0; # counter used to make back and next button
+my $next        = 0; # counter used to make back and next button
 
 my $find = "{{sitename}}";
 my $replace = '"$sitename <small>Simple Static Site Generator</small>"';
 $default_template =~ s/$find/$replace/ee;
-
 
 opendir( CSSDIR, $css_dir_name ) || warn "Error in opening dir $posts_dir_name\n";
 my @CSS = readdir(CSSDIR);
@@ -60,21 +62,47 @@ foreach my $currentstylesheet (@CSS) {
 	}
 }
 
-# <link href="" media="all" rel="stylesheet" type="text/css">
-
 opendir( POSTSDIR, $posts_dir_name ) || warn "Error in opening dir $posts_dir_name\n";
 my @POSTS = readdir(POSTSDIR);
 closedir( POSTSDIR );
 
-my $post_count = 0;
-my $index_count = 1;
-my $previous;
-my $next;
+#
+# Build about
+#
+
+open (ABOUTHTMLFILE, ">about.html");
+
+print ABOUTHTMLFILE $doctype_template . "\n";
+print ABOUTHTMLFILE "<head>\n";
+print ABOUTHTMLFILE "<title>$sitename - About</title>";
+print ABOUTHTMLFILE $header_template;
+print ABOUTHTMLFILE $css_link;
+print ABOUTHTMLFILE "</head>\n";
+print ABOUTHTMLFILE "<body>\n";
+print ABOUTHTMLFILE "<div class='container'>\n";
+print ABOUTHTMLFILE $default_template . "\n";
+
+my $about_content = qx/.\/Markdown.pl about.md/;
+
+print ABOUTHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2'>";
+print ABOUTHTMLFILE $about_content;
+print ABOUTHTMLFILE "</article></div>";
+
+print ABOUTHTMLFILE $footer_template . "\n"; 
+print ABOUTHTMLFILE "</div>\n";
+print ABOUTHTMLFILE "</body>\n";
+print ABOUTHTMLFILE "</html>\n";
+
+close (ABOUTHTMLFILE);
+
+#
+# Begin building first index
+#
 
 open (INDEXHTMLFILE, ">index.html");
 print INDEXHTMLFILE $doctype_template . "\n";
 print INDEXHTMLFILE "<head>\n";
-print INDEXHTMLFILE "<title>$sitename</title>";
+print INDEXHTMLFILE "<title>$sitename</title>\n";
 print INDEXHTMLFILE $header_template;
 print INDEXHTMLFILE $css_link;
 print INDEXHTMLFILE "</head>\n";
@@ -82,6 +110,24 @@ print INDEXHTMLFILE "<body>\n";
 print INDEXHTMLFILE "<div class='container'>\n";
 print INDEXHTMLFILE $default_template . "\n";
 
+#
+# Begin building tags
+#
+
+open (TAGHTMLFILE, ">tags.html");
+print TAGHTMLFILE $doctype_template . "\n";
+print TAGHTMLFILE "<head>\n";
+print TAGHTMLFILE "<title>$sitename</title>\n";
+print TAGHTMLFILE $header_template;
+print TAGHTMLFILE $css_link;
+print TAGHTMLFILE "</head>\n";
+print TAGHTMLFILE "<body>\n";
+print TAGHTMLFILE "<div class='container'>\n";
+print TAGHTMLFILE $default_template . "\n";
+
+#
+# Now things get serious, start building blog from posts
+#
 
 foreach my $currentpost (reverse(@POSTS)) {
 	if ($currentpost ne "." && $currentpost ne ".." && $currentpost ne ".DS_Store") {
@@ -93,31 +139,22 @@ foreach my $currentpost (reverse(@POSTS)) {
 			$next = $index_count + 1;
 			
 			if ($index_count == 1) {			
-				print INDEXHTMLFILE "<div class = 'row-fluid'><div class = 'span2'>";
-				print INDEXHTMLFILE "</div>";
+				print INDEXHTMLFILE "<div class = 'row-fluid'>";
+				print INDEXHTMLFILE "<div class = 'span8 offset2'>";
 				
-				print INDEXHTMLFILE "<div class = 'span8'>";
-				
-				# print INDEXHTMLFILE "<a href='$previous.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a>";
-				print INDEXHTMLFILE "<a href='$next.html' class='btn pull-right'>Next <i class='icon-black icon-arrow-right'></i></a>";
+				print INDEXHTMLFILE get_next_button($next);
 				
 				print INDEXHTMLFILE "</div>";
-				
-				print INDEXHTMLFILE "<div class = 'span2'>";
-				print INDEXHTMLFILE "</div></div>";
+				print INDEXHTMLFILE "</div>";
 			} else {
-				print INDEXHTMLFILE "<div class = 'row-fluid'><div class = 'span2'>";
-				print INDEXHTMLFILE "</div>";
+				print INDEXHTMLFILE "<div class = 'row-fluid'>";
+				print INDEXHTMLFILE "<div class = 'span8 offset2'>";
 				
-				print INDEXHTMLFILE "<div class = 'span8'>";
-				
-				print INDEXHTMLFILE "<a href='$previous.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a>";
-				print INDEXHTMLFILE "<a href='$next.html' class='btn pull-right'>Next <i class='icon-black icon-arrow-right'></i></a>";
+				print INDEXHTMLFILE get_prev_button($previous);
+				print INDEXHTMLFILE get_next_button($next);
 				
 				print INDEXHTMLFILE "</div>";
-				
-				print INDEXHTMLFILE "<div class = 'span2'>";
-				print INDEXHTMLFILE "</div></div>";
+				print INDEXHTMLFILE "</div>";
 			}
 
 			
@@ -165,18 +202,19 @@ foreach my $currentpost (reverse(@POSTS)) {
 		# Get HTML snippet from Markdown
 		#
 		
-		   $find    = "{{meta}}";
-		   $replace = '"$meta"';
+			 $find	  = "{{meta}}";
+			 $replace = '"$meta"';
 		
 		my $post_dir_escape = php_escapeshellarg($posts_dir_name . '/' . $currentpost);
 		my $post_content = qx/.\/Markdown.pl $post_dir_escape/;
-		   $post_content =~ s/$find/$replace/ee;
+		$post_content =~ s/$find/$replace/ee;
 		
-		   $find = "{{content}}";
-		   $replace = '"$post_content"';
+			 $find = "{{content}}";
+			 $replace = '"$post_content"';
 		my $current_post_template = $post_template;
-		   $current_post_template =~ s/$find/$replace/ee;
+			 $current_post_template =~ s/$find/$replace/ee;
 		
+		my @hashtags = $post_content =~ /(#[A-z_]\w+)/;
 		
 		open (POSTHTMLFILE, ">$post_url");
 		
@@ -205,68 +243,43 @@ foreach my $currentpost (reverse(@POSTS)) {
 	}
 }
 
+print TAGHTMLFILE $footer_template . "\n";
+print TAGHTMLFILE "</div>\n"; 
+print TAGHTMLFILE "</body>\n";
+print TAGHTMLFILE "</html>\n";
+
 if ($post_count % 5 != 0) {
 
 	$previous = $index_count - 1;
 	$next = $index_count + 1;
 	
 	if ($index_count > 1) {	
-		print INDEXHTMLFILE "<div class = 'row-fluid'><div class = 'span2'>";
-		print INDEXHTMLFILE "</div>";
-		
-		print INDEXHTMLFILE "<div class = 'span8'>";
+		print INDEXHTMLFILE "<div class = 'row-fluid'>";
+		print INDEXHTMLFILE "<div class = 'span8 offset2'>";
 		
 		my $tmppre = "1";
-		
 		if ($previous eq 1) {
-		
-            $tmppre = 'index';
-        }	
-		
-		print INDEXHTMLFILE "<a href='$tmppre.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a>";
-		
+			$tmppre = 'index';
+		}
+			
+		print INDEXHTMLFILE get_prev_button($tmppre);
 		print INDEXHTMLFILE "</div>";
-		
-		print INDEXHTMLFILE "<div class = 'span2'>";
-		print INDEXHTMLFILE "</div></div>";
+		print INDEXHTMLFILE "</div>";
 	}
 	
 	print INDEXHTMLFILE $footer_template . "\n";
 	print INDEXHTMLFILE "</div>\n"; 
 	print INDEXHTMLFILE "</body>\n";
 	print INDEXHTMLFILE "</html>\n";
-	
-	#
-	# Build about
-	#
-	
-	open (ABOUTHTMLFILE, ">about.html");
-
-	print ABOUTHTMLFILE $doctype_template . "\n";
-	print ABOUTHTMLFILE "<head>\n";
-	print ABOUTHTMLFILE "<title>$sitename - About</title>";
-	print ABOUTHTMLFILE $header_template;
-	print ABOUTHTMLFILE $css_link;
-	print ABOUTHTMLFILE "</head>\n";
-	print ABOUTHTMLFILE "<body>\n";
-	print ABOUTHTMLFILE "<div class='container'>\n";
-	print ABOUTHTMLFILE $default_template . "\n";
-	
-	my $about_content = qx/.\/Markdown.pl about.md/;
-	
-	
-	print ABOUTHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2'>";
-	print ABOUTHTMLFILE $about_content;
-	print ABOUTHTMLFILE "</article></div>";
-	
-	print ABOUTHTMLFILE $footer_template . "\n"; 
-	print ABOUTHTMLFILE "</div>\n";
-	print ABOUTHTMLFILE "</body>\n";
-	print ABOUTHTMLFILE "</html>\n";
-	
-	close (ABOUTHTMLFILE);
 }
 
+sub get_next_button {
+    return "<a href='@_.html' class='btn pull-right'>Next <i class='icon-black icon-arrow-right'></i></a>"
+}
+
+sub get_prev_button {
+    return "<a href='@_.html' class='btn'><i class='icon-black icon-arrow-left'></i> Previous</a>"
+}
 
 sub php_escapeshellarg { 
 	my $str = @_ ? shift : $_;

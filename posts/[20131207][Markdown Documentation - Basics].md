@@ -1,5 +1,5 @@
-Getting the Gist of Markdown's Formatting Syntax {{meta}}
----------------------------------------------------------
+The Gist of Markdown's Formatting Syntax {{meta}}
+-------------------------------------------------
 
 This page offers a brief overview of what it's like to use Markdown.
 The [syntax page] [s] provides complete, detailed documentation for

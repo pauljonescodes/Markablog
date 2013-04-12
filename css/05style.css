@@ -39,8 +39,6 @@ h2 small {
 
 article {
 font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
-padding-bottom: 21px;
-border-bottom: 1px solid #eee;
 }
 
 article p {
@@ -80,24 +78,25 @@ a {
 	color: #d21034;
 }
 
-article pre {
-padding: 2px 2px;
-color: black;
-background-color: #eff0f0;
-border: 1px solid #999;
+pre {
+    background-color: #f8f8f8;
+border: 1px solid #ccc;
+overflow: auto;
+border-radius: 3px;
 }
 
 code {
 	font-size: 14px;
 	font-weight: 200;
-	color: #333333;
+	color: #ccc;
+	background-color: #f8f8f8;
 }
 
 article code {
 	padding: 2px 2px;
 	color: #333333;
 	border-color: #999;
-	background-color: #eff0f0;
+	background-color: #f8f8f8;
 }
 
 article ul {
@@ -206,3 +205,32 @@ html,
 @media only screen and (min-device-width: 481px) and (max-device-width: 1024px)and (orientation:portrait){
 	article { min-width: 100%;}
 }
+
+html {font-size:100%;}
+body {font-size:85%;}
+h1 {font-size:2.5em;line-height:1;margin-bottom:0.5em;margin-top: 21px; margin-bottom: 21px;}
+h1 small {font-size: inherit;line-height:1;margin-bottom:0.5em;}
+h2 {font-size:2em;margin-bottom:0.75em;}
+h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
+h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
+h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
+h6 {font-size:1em;font-weight:bold;}
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
+strong, dfn {font-weight:bold;}
+em, dfn {font-style:italic;}
+sup, sub {line-height:0;}
+abbr, acronym {border-bottom:1px dotted #666;}
+address {margin:0 0 1.5em;font-style:italic;}
+pre {margin:1.5em 0;white-space:pre;}
+li ul, li ol {margin:0;}
+ul, ol {margin:0 1.5em 1.5em 0;padding-left:1.5em;}
+dl {margin:0 0 1.5em 0;}
+dl dt {font-weight:bold;}
+dd {margin-left:1.5em;}
+table {margin-bottom:1.4em;width:100%;}
+th {font-weight:bold;}
+thead th {background:#c3d9ff;}
+th, td, caption {padding:4px 10px 4px 5px;}
+tbody tr:nth-child(even) td, tbody tr.even td {background:#e5ecf9;}
+tfoot {font-style:italic;}
+caption {background:#eee;}
