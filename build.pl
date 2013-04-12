@@ -46,7 +46,7 @@ my $js_foot;
 my @post_urls;
 
 my $find = "{{sitename}}";
-my $replace = '"$sitename <small>A Simple Static Site Generator</small>"';
+my $replace = '"$sitename <small>Simple Static Site Generator</small>"';
 $default_template =~ s/$find/$replace/ee;
 
 
@@ -79,6 +79,7 @@ print INDEXHTMLFILE $header_template;
 print INDEXHTMLFILE $css_link;
 print INDEXHTMLFILE "</head>\n";
 print INDEXHTMLFILE "<body>\n";
+print INDEXHTMLFILE "<div class='container'>\n";
 print INDEXHTMLFILE $default_template . "\n";
 
 
@@ -123,6 +124,7 @@ foreach my $currentpost (reverse(@POSTS)) {
 			$index_count++;
 			
 			print INDEXHTMLFILE $footer_template . "\n"; 
+			print INDEXHTMLFILE "</div>\n";
 			print INDEXHTMLFILE "</body>\n";
 			print INDEXHTMLFILE "</html>\n";
 			
@@ -136,14 +138,13 @@ foreach my $currentpost (reverse(@POSTS)) {
 			print INDEXHTMLFILE $css_link;
 			print INDEXHTMLFILE "</head>\n";
 			print INDEXHTMLFILE "<body>\n";
+			print INDEXHTMLFILE "<div class='container'>\n";
 			print INDEXHTMLFILE $default_template . "\n";
 		}
 		
 		#
 		# Get data and title, make url
 		#
-		
-		print $currentpost . "\n";
 		
 		my ($date, $title) = $currentpost =~ /\[([^\]]*)\]/g;
 		
@@ -186,9 +187,11 @@ foreach my $currentpost (reverse(@POSTS)) {
 		print POSTHTMLFILE $css_link;
 		print POSTHTMLFILE "</head>\n";
 		print POSTHTMLFILE "<body>\n";
+		print POSTHTMLFILE "<div class='container'>\n";
 		print POSTHTMLFILE $default_template . "\n";
 		print POSTHTMLFILE $current_post_template;
 		print POSTHTMLFILE $footer_template . "\n"; 
+		print POSTHTMLFILE "</div>\n";
 		print POSTHTMLFILE "</body>\n";
 		print POSTHTMLFILE "</html>\n";
 		
@@ -228,10 +231,42 @@ if ($post_count % 5 != 0) {
 		print INDEXHTMLFILE "</div></div>";
 	}
 	
-	print INDEXHTMLFILE $footer_template . "\n"; 
+	print INDEXHTMLFILE $footer_template . "\n";
+	print INDEXHTMLFILE "</div>\n"; 
 	print INDEXHTMLFILE "</body>\n";
 	print INDEXHTMLFILE "</html>\n";
+	
+	#
+	# Build about
+	#
+	
+	open (ABOUTHTMLFILE, ">about.html");
+
+	print ABOUTHTMLFILE $doctype_template . "\n";
+	print ABOUTHTMLFILE "<head>\n";
+	print ABOUTHTMLFILE "<title>$sitename - About</title>";
+	print ABOUTHTMLFILE $header_template;
+	print ABOUTHTMLFILE $css_link;
+	print ABOUTHTMLFILE "</head>\n";
+	print ABOUTHTMLFILE "<body>\n";
+	print ABOUTHTMLFILE "<div class='container'>\n";
+	print ABOUTHTMLFILE $default_template . "\n";
+	
+	my $about_content = qx/.\/Markdown.pl about.md/;
+	
+	
+	print ABOUTHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2'>";
+	print ABOUTHTMLFILE $about_content;
+	print ABOUTHTMLFILE "</article></div>";
+	
+	print ABOUTHTMLFILE $footer_template . "\n"; 
+	print ABOUTHTMLFILE "</div>\n";
+	print ABOUTHTMLFILE "</body>\n";
+	print ABOUTHTMLFILE "</html>\n";
+	
+	close (ABOUTHTMLFILE);
 }
+
 
 sub php_escapeshellarg { 
 	my $str = @_ ? shift : $_;

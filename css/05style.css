@@ -26,23 +26,27 @@ font-color:#999;
 font-weight:200;
 }
 
+.footnote {
+     position: relative; top: -0.5em; font-size: 80%; 
+}
+
 h2 small {
     font-color:#999;
     font-weight:200;
     float:right;
     line-height: 35px;
-}
+} 
 
 article {
-display:block;
 font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
-line-height:1.25em;
-position:relative;
+padding-bottom: 21px;
+border-bottom: 1px solid #eee;
 }
 
 article p {
 	text-align: justify;
 }
+
 .navbar ul, .nav ul {
 	padding-left: 0px;
 }
@@ -71,7 +75,7 @@ font-size: 17px;
 font-weight: 200;
 }
 
-article a {
+a {
 	-webkit-transition:color .2s ease-in-out;
 	color: #d21034;
 }
@@ -106,11 +110,6 @@ article ol {
 
 article li p {
 	margin: 0px;
-}
-
-article li {
-	font-size: 16px;
-	line-height: 1.425em;
 }
 
 article a:hover {
@@ -157,6 +156,11 @@ border-right: 0px solid #999;
     #nav { display: none }
 }
 
+h3 {
+    font-weight: 500;
+    font-size: 20px;
+    color: #999;
+}
 
 html,
       body {
@@ -183,8 +187,8 @@ html,
       }
       
       #footer p {
-	      margin-left:40px;
 	      margin-top:10px;
+	      color:#999;
       }
       
       #footer a:hover {
