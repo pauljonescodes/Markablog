@@ -4,6 +4,7 @@ use strict;
 use Cwd;
 use File::Slurp;
 use URI::Escape;
+use File::Basename;
 
 #
 # Some metadata
@@ -20,6 +21,7 @@ my $posts_dir_name	 = $cwd . '/posts';
 my $css_dir_name	 = $cwd . '/css';
 my $html_dir_name	 = $cwd . '/html';
 my $js_dir_name		 = $cwd . '/js';
+my $pages_dir_name   = $cwd . '/pages';
 
 #
 # The HTML snippets used for templating
@@ -47,6 +49,7 @@ my $post_count  = 0; # counts the total number of posts
 my $index_count = 1; # counts the number of index pages, starting with index.html at 1
 my $previous    = 0; # counter used to make back and next button
 my $next        = 0; # counter used to make back and next button
+my $navlinks    = "<a href = 'index.html'>Index</a>";
 
 my $find = "{{sitename}}";
 my $replace = '"$sitename <small>Simple Static Site Generator</small>"';
@@ -67,33 +70,54 @@ my @POSTS = readdir(POSTSDIR);
 closedir( POSTSDIR );
 
 #
-# Build about
+# Build pages
 #
 
-open (ABOUTHTMLFILE, ">about.html");
+opendir( PAGESDIR, $pages_dir_name ) || warn "Error in opening dir $posts_dir_name\n";
+my @PAGES = readdir(PAGESDIR);
+closedir( PAGESDIR );
 
-print ABOUTHTMLFILE $doctype_template . "\n";
-print ABOUTHTMLFILE "<head>\n";
-print ABOUTHTMLFILE "<title>$sitename - About</title>";
-print ABOUTHTMLFILE $header_template;
-print ABOUTHTMLFILE $css_link;
-print ABOUTHTMLFILE "</head>\n";
-print ABOUTHTMLFILE "<body>\n";
-print ABOUTHTMLFILE "<div class='container'>\n";
-print ABOUTHTMLFILE $default_template . "\n";
+foreach my $currentpage (@PAGES) {
+	if ($currentpage ne "." && $currentpage ne ".." && $currentpage ne ".DS_Store") {
+	   my $title = basename($currentpage, '.md');
+	   $navlinks .= " | <a href = '$title.html'>$title</a>";
+	}
+}
 
-my $about_content = qx/.\/Markdown.pl about.md/;
+$find = "{{nav}}";
+$replace = '"$navlinks"';
+$default_template =~ s/$find/$replace/ee;
 
-print ABOUTHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2'>";
-print ABOUTHTMLFILE $about_content;
-print ABOUTHTMLFILE "</article></div>";
-
-print ABOUTHTMLFILE $footer_template . "\n"; 
-print ABOUTHTMLFILE "</div>\n";
-print ABOUTHTMLFILE "</body>\n";
-print ABOUTHTMLFILE "</html>\n";
-
-close (ABOUTHTMLFILE);
+foreach my $currentpage (@PAGES) {
+	if ($currentpage ne "." && $currentpage ne ".." && $currentpage ne ".DS_Store") {
+        my $title = basename($currentpage, '.md');
+        
+        open (PAGEHTMLFILE, ">$title.html");
+        
+        print PAGEHTMLFILE $doctype_template . "\n";
+        print PAGEHTMLFILE "<head>\n";
+        print PAGEHTMLFILE "<title>$sitename - $title</title>";
+        print PAGEHTMLFILE $header_template;
+        print PAGEHTMLFILE $css_link;
+        print PAGEHTMLFILE "</head>\n";
+        print PAGEHTMLFILE "<body>\n";
+        print PAGEHTMLFILE "<div class='container'>\n";
+        print PAGEHTMLFILE $default_template . "\n";
+        
+        my $page_dir_escape = php_escapeshellarg($pages_dir_name . '/' . $currentpage);
+        my $page_content = qx/.\/Markdown.pl $page_dir_escape/;
+        
+        print PAGEHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2'>";
+        print PAGEHTMLFILE $page_content;
+        print PAGEHTMLFILE "</article></div>";
+        print PAGEHTMLFILE $footer_template . "\n"; 
+        print PAGEHTMLFILE "</div>\n";
+        print PAGEHTMLFILE "</body>\n";
+        print PAGEHTMLFILE "</html>\n";
+        
+        close (PAGEHTMLFILE);
+    }
+}
 
 #
 # Begin building first index
@@ -114,16 +138,16 @@ print INDEXHTMLFILE $default_template . "\n";
 # Begin building tags
 #
 
-open (TAGHTMLFILE, ">tags.html");
-print TAGHTMLFILE $doctype_template . "\n";
-print TAGHTMLFILE "<head>\n";
-print TAGHTMLFILE "<title>$sitename</title>\n";
-print TAGHTMLFILE $header_template;
-print TAGHTMLFILE $css_link;
-print TAGHTMLFILE "</head>\n";
-print TAGHTMLFILE "<body>\n";
-print TAGHTMLFILE "<div class='container'>\n";
-print TAGHTMLFILE $default_template . "\n";
+# open (TAGHTMLFILE, ">tags.html");
+# print TAGHTMLFILE $doctype_template . "\n";
+# print TAGHTMLFILE "<head>\n";
+# print TAGHTMLFILE "<title>$sitename</title>\n";
+# print TAGHTMLFILE $header_template;
+# print TAGHTMLFILE $css_link;
+# print TAGHTMLFILE "</head>\n";
+# print TAGHTMLFILE "<body>\n";
+# print TAGHTMLFILE "<div class='container'>\n";
+# print TAGHTMLFILE $default_template . "\n";
 
 #
 # Now things get serious, start building blog from posts
@@ -243,10 +267,10 @@ foreach my $currentpost (reverse(@POSTS)) {
 	}
 }
 
-print TAGHTMLFILE $footer_template . "\n";
-print TAGHTMLFILE "</div>\n"; 
-print TAGHTMLFILE "</body>\n";
-print TAGHTMLFILE "</html>\n";
+# print TAGHTMLFILE $footer_template . "\n";
+# print TAGHTMLFILE "</div>\n"; 
+# print TAGHTMLFILE "</body>\n";
+# print TAGHTMLFILE "</html>\n";
 
 if ($post_count % 5 != 0) {
 

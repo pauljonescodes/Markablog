@@ -6,6 +6,18 @@ Markablog Remarkably Simple Blogging
 This script accepts Markdown as input and builds a blog
 style website.
 
+Everything is an asset, the effort for every task is distilled.
+
+It's unique in that it allows you to not do very much to
+dramatically change the site. Here's why:
+
+- Anything you put in the posts directory will become a post in the index.
+- Anything you put in the pages directory will become a page in the navbar.
+- Anything you put in the CSS directory will be come a stylesheet for everything.
+- Any word you write will be beautifully styled thanks to [Bootstrap](http://twitter.github.io/bootstrap/).
+- Any code you write will be beautifully highlighted thanks to [Prettyprint](http://code.google.com/p/google-code-prettify/).
+- Any math you write will be beautifully rendered thanks to [MathJax](http://www.mathjax.org).
+
 ## Quick start
 
 You should download the source, place Markdown files in the posts
@@ -60,3 +72,5 @@ write my own:
 	- A hashtag implementation *a la* Twitter
 	- A hashtag in a post will enter that post into a
 	  ordered list in a unified `Tags.html` page.
+- Site map
+	- A linked list of every post

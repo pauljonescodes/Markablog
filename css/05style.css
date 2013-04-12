@@ -39,6 +39,8 @@ h2 small {
 
 article {
 font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
+padding-bottom: 21px;
+border-bottom: 1px solid #eee;
 }
 
 article p {
@@ -78,24 +80,23 @@ a {
 	color: #d21034;
 }
 
-pre {
-    background-color: #f8f8f8;
-border: 1px solid #ccc;
-overflow: auto;
-border-radius: 3px;
+article pre {
+padding: 2px 2px;
+color: black;
+background-color: #f8f8f8;
+border: 1px solid #eee;
 }
 
 code {
 	font-size: 14px;
 	font-weight: 200;
-	color: #ccc;
+	border-color: #eee;
 	background-color: #f8f8f8;
 }
 
 article code {
 	padding: 2px 2px;
-	color: #333333;
-	border-color: #999;
+	border-color: #eee;
 	background-color: #f8f8f8;
 }
 
@@ -113,10 +114,6 @@ article li p {
 
 article a:hover {
 color:#999;
-}
-
-a {
-color:#d21034;
 }
 
 a:hover {
@@ -206,6 +203,7 @@ html,
 	article { min-width: 100%;}
 }
 
+/* typography.css */
 html {font-size:100%;}
 body {font-size:85%;}
 h1 {font-size:2.5em;line-height:1;margin-bottom:0.5em;margin-top: 21px; margin-bottom: 21px;}

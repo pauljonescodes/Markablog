@@ -15,7 +15,7 @@ to improve your experience.
             
             <div class="text-center">
         
-                <a href = "index.html">Index</a> | <a href = "about.html">About</a>
+                {{nav}}
         
             </div>
         </div>
