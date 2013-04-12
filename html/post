@@ -1,0 +1,9 @@
+<div class="row-fluid">
+    <article class="span8 offset2">
+
+{{content}}
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div>
