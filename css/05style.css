@@ -17,8 +17,10 @@ text-rendering: optimizeLegibility;
 h1 {
 	margin-top: 5px;
 } h2 {
+	margin-top:10px;
 	border-bottom: 1px solid #999;
 	line-height: 35px;
+	padding-bottom: 10px;
 }
 
 h1 small {
@@ -39,7 +41,7 @@ h2 small {
 
 article {
 font-family:"Lucida Grande", Tahoma, Arial, sans-serif;
-padding-bottom: 21px;
+padding-bottom: 10px;
 border-bottom: 1px solid #eee;
 }
 
@@ -55,10 +57,6 @@ article p {
 	margin-left: 0px;
 }
 
-blockquote p {
-	font-size: 16px;
-}
-
 blockquote {
 	margin: 0 0 10px;
 	border-left: 5px solid #999;
@@ -70,8 +68,8 @@ blockquote {
 
 blockquote p {
 font-style:italic;
-line-height:1.5em;
-font-size: 17px;
+line-height:1.25em;
+font-size:15px;
 font-weight: 200;
 }
 
@@ -83,21 +81,21 @@ a {
 article pre {
 padding: 2px 2px;
 color: black;
-background-color: #f8f8f8;
-border: 1px solid #eee;
+background-color: #eff0f0;
+border: 1px solid #999;
 }
 
 code {
 	font-size: 14px;
 	font-weight: 200;
-	border-color: #eee;
-	background-color: #f8f8f8;
+	color: #333333;
 }
 
 article code {
 	padding: 2px 2px;
-	border-color: #eee;
-	background-color: #f8f8f8;
+	color: #333333;
+	border-color: #999;
+	background-color: #eff0f0;
 }
 
 article ul {
@@ -114,6 +112,10 @@ article li p {
 
 article a:hover {
 color:#999;
+}
+
+a {
+color:#d21034;
 }
 
 a:hover {
@@ -155,7 +157,6 @@ border-right: 0px solid #999;
 h3 {
     font-weight: 500;
     font-size: 20px;
-    color: #999;
 }
 
 html,
@@ -188,7 +189,7 @@ html,
       }
       
       #footer a:hover {
-	      color:#dfe1e2;
+	      color:#999;
       }
 
       /* Lastly, apply responsive CSS fixes as necessary */
@@ -210,7 +211,8 @@ h1 {font-size:2.5em;line-height:1;margin-bottom:0.5em;margin-top: 21px; margin-b
 h1 small {font-size: inherit;line-height:1;margin-bottom:0.5em;}
 h2 {font-size:2em;margin-bottom:0.75em;}
 h3 {font-size:1.5em;line-height:1;margin-bottom:1em;}
-h4 {font-size:1.2em;line-height:1.25;margin-bottom:1.25em;}
+h4 {font-size:1.3em;line-height:1.25;margin-bottom:1.25em;}
+h4 small {font-size:inherit; font-weight:inherit;}
 h5 {font-size:1em;font-weight:bold;margin-bottom:1.5em;}
 h6 {font-size:1em;font-weight:bold;}
 h1 img, h2 img, h3 img, h4 img, h5 img, h6 img {margin:0;}
