@@ -14,6 +14,7 @@
 <link href='css/03bootstrap-responsive.min.css' type='text/css' rel='stylesheet'>
 <link href='css/04normalize.css' type='text/css' rel='stylesheet'>
 <link href='css/05style.css' type='text/css' rel='stylesheet'>
+<link href='css/06more.css' type='text/css' rel='stylesheet'>
 </head>
 <body>
 <div class='container'>
@@ -30,19 +31,20 @@ to improve your experience.
 
 <div class="row-fluid">
         <div class="span8 offset2">
-            <div class="page header"><h1>Markablog <small>Simple Static Site Generator</small></h1></div>
+            <div class="text-center"><h1>Markablog <small>Simple Static Site Generator</small></h1></div>
             
-            <div class="text-center">
+            <div class="text-center" style="padding-bottom:10px;">
         
-                <a href = 'http://pljns.com'>PLJNS.com</a> | <a href = 'index.html'>Project Home</a> | <a href = 'Markup Syntax.html'>Markup Syntax</a>
+                <a href = 'index.html'>Index</a> | <a href = 'Markup Syntax.html'>Markup Syntax</a>
         
             </div>
+
         </div>
         
         <div class = "span2"></div>
 </div>
 <div class="row-fluid">
-    <article class="span8 offset2">
+    <article class="span8 offset2 well">
 
 <h2>Markablog Remarkably Simple Blogging <small><a href = '20130410Readme.html'>April 10th, 2013</a></small></h2>
 
@@ -77,7 +79,7 @@ directory, and run build.</p>
 
 <p>If you'd like to sort your posts, you need to have your naming format
 be alphanumerically and lexicographically sortable. The naming standard
-that's built into Markable is <code>[YEARMNDY]["Title"].md</code>.</p>
+that's built into Markable is <code class='prettyprint'>[YEARMNDY]["Title"].md</code>.</p>
 
 <p>If you'd like the date displayed in your post, you'll need to use something
 like this:</p>
@@ -86,15 +88,15 @@ like this:</p>
 -------------------------------------
 </code></pre>
 
-<p>The <code>{{meta}}</code> will be replaced by a date and a clickable link to a page
+<p>The <code class='prettyprint'>{{meta}}</code> will be replaced by a date and a clickable link to a page
 with only this post.</p>
 
-<p>Replace the metadata in <code>build.pl</code> to get a custom title for your site.</p>
+<p>Replace the metadata in <code class='prettyprint'>build.pl</code> to get a custom title for your site.</p>
 
 <p>The title and URL of every post in the browser is determined by the filename,
 everything else in the file is determined by you.</p>
 
-<p>To edit the About page, edit <code>about.md</code>.</p>
+<p>To edit the About page, edit <code class='prettyprint'>about.md</code>.</p>
 
 <h3>Design Goals</h3>
 
@@ -132,7 +134,7 @@ write my own:</p>
 <ul>
 <li>A hashtag implementation <em>a la</em> Twitter</li>
 <li>A hashtag in a post will enter that post into a
-ordered list in a unified <code>Tags.html</code> page.</li>
+ordered list in a unified <code class='prettyprint'>Tags.html</code> page.</li>
 </ul></li>
 <li>Site map
 <ul>

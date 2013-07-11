@@ -13,6 +13,7 @@
 <link href='css/03bootstrap-responsive.min.css' type='text/css' rel='stylesheet'>
 <link href='css/04normalize.css' type='text/css' rel='stylesheet'>
 <link href='css/05style.css' type='text/css' rel='stylesheet'>
+<link href='css/06more.css' type='text/css' rel='stylesheet'>
 </head>
 <body>
 <div class='container'>
@@ -29,18 +30,19 @@ to improve your experience.
 
 <div class="row-fluid">
         <div class="span8 offset2">
-            <div class="page header"><h1>Markablog <small>Simple Static Site Generator</small></h1></div>
+            <div class="text-center"><h1>Markablog <small>Simple Static Site Generator</small></h1></div>
             
-            <div class="text-center">
+            <div class="text-center" style="padding-bottom:10px;">
         
-                <a href = 'http://pljns.com'>PLJNS.com</a> | <a href = 'index.html'>Project Home</a> | <a href = 'Markup Syntax.html'>Markup Syntax</a>
+                <a href = 'index.html'>Index</a> | <a href = 'Markup Syntax.html'>Markup Syntax</a>
         
             </div>
+
         </div>
         
         <div class = "span2"></div>
 </div>
-<div class = 'row-fluid'><article class='span8 offset2'><h2>Markdown Syntax <small>by <a href="http://daringfireball.net/projects/markdown/syntax">John Gruber</a></small></h2>
+<div class = 'row-fluid'><article class='span8 offset2 well'><h2>Markdown Syntax <small>by <a href="http://daringfireball.net/projects/markdown/syntax">John Gruber</a></small></h2>
 
 <h3>Overview</h3>
 
@@ -82,11 +84,11 @@ use HTML itself. There's no need to preface it or delimit it to
 indicate that you're switching from Markdown to HTML; you just use
 the tags.</p>
 
-<p>The only restrictions are that block-level HTML elements -- e.g. <code>&lt;div&gt;</code>,
-<code>&lt;table&gt;</code>, <code>&lt;pre&gt;</code>, <code>&lt;p&gt;</code>, etc. -- must be separated from surrounding
+<p>The only restrictions are that block-level HTML elements -- e.g. <code class='prettyprint'>&lt;div&gt;</code>,
+<code class='prettyprint'>&lt;table&gt;</code>, <code class='prettyprint'>&lt;pre&gt;</code>, <code class='prettyprint'>&lt;p&gt;</code>, etc. -- must be separated from surrounding
 content by blank lines, and the start and end tags of the block should
 not be indented with tabs or spaces. Markdown is smart enough not
-to add extra (unwanted) <code>&lt;p&gt;</code> tags around HTML block-level tags.</p>
+to add extra (unwanted) <code class='prettyprint'>&lt;p&gt;</code> tags around HTML block-level tags.</p>
 
 <p>For example, to add an HTML table to a Markdown article:</p>
 
@@ -102,13 +104,13 @@ This is another regular paragraph.
 </code></pre>
 
 <p>Note that Markdown formatting syntax is not processed within block-level
-HTML tags. E.g., you can't use Markdown-style <code>*emphasis*</code> inside an
+HTML tags. E.g., you can't use Markdown-style <code class='prettyprint'>*emphasis*</code> inside an
 HTML block.</p>
 
-<p>Span-level HTML tags -- e.g. <code>&lt;span&gt;</code>, <code>&lt;cite&gt;</code>, or <code>&lt;del&gt;</code> -- can be
+<p>Span-level HTML tags -- e.g. <code class='prettyprint'>&lt;span&gt;</code>, <code class='prettyprint'>&lt;cite&gt;</code>, or <code class='prettyprint'>&lt;del&gt;</code> -- can be
 used anywhere in a Markdown paragraph, list item, or header. If you
 want, you can even use HTML tags instead of Markdown formatting; e.g. if
-you'd prefer to use HTML <code>&lt;a&gt;</code> or <code>&lt;img&gt;</code> tags instead of Markdown's
+you'd prefer to use HTML <code class='prettyprint'>&lt;a&gt;</code> or <code class='prettyprint'>&lt;img&gt;</code> tags instead of Markdown's
 link or image syntax, go right ahead.</p>
 
 <p>Unlike block-level HTML tags, Markdown syntax <em>is</em> processed within
@@ -116,14 +118,14 @@ span-level tags.</p>
 
 <h4>Automatic Escaping for Special Characters</h4>
 
-<p>In HTML, there are two characters that demand special treatment: <code>&lt;</code>
-and <code>&amp;</code>. Left angle brackets are used to start tags; ampersands are
+<p>In HTML, there are two characters that demand special treatment: <code class='prettyprint'>&lt;</code>
+and <code class='prettyprint'>&amp;</code>. Left angle brackets are used to start tags; ampersands are
 used to denote HTML entities. If you want to use them as literal
-characters, you must escape them as entities, e.g. <code>&amp;lt;</code>, and
-<code>&amp;amp;</code>.</p>
+characters, you must escape them as entities, e.g. <code class='prettyprint'>&amp;lt;</code>, and
+<code class='prettyprint'>&amp;amp;</code>.</p>
 
 <p>Ampersands in particular are bedeviling for web writers. If you want to
-write about 'AT&amp;T', you need to write '<code>AT&amp;amp;T</code>'. You even need to
+write about 'AT&amp;T', you need to write '<code class='prettyprint'>AT&amp;amp;T</code>'. You even need to
 escape ampersands within URLs. Thus, if you want to link to:</p>
 
 <pre class='prettyprint'><code>http://images.google.com/images?num=30&amp;q=larry+bird
@@ -134,14 +136,14 @@ escape ampersands within URLs. Thus, if you want to link to:</p>
 <pre class='prettyprint'><code>http://images.google.com/images?num=30&amp;amp;q=larry+bird
 </code></pre>
 
-<p>in your anchor tag <code>href</code> attribute. Needless to say, this is easy to
+<p>in your anchor tag <code class='prettyprint'>href</code> attribute. Needless to say, this is easy to
 forget, and is probably the single most common source of HTML validation
 errors in otherwise well-marked-up web sites.</p>
 
 <p>Markdown allows you to use these characters naturally, taking care of
 all the necessary escaping for you. If you use an ampersand as part of
 an HTML entity, it remains unchanged; otherwise it will be translated
-into <code>&amp;amp;</code>.</p>
+into <code class='prettyprint'>&amp;amp;</code>.</p>
 
 <p>So, if you want to include a copyright symbol in your article, you can write:</p>
 
@@ -173,8 +175,8 @@ such. But if you write:</p>
 <p>However, inside Markdown code spans and blocks, angle brackets and
 ampersands are <em>always</em> encoded automatically. This makes it easy to use
 Markdown to write about HTML code. (As opposed to raw HTML, which is a
-terrible format for writing about HTML syntax, because every single <code>&lt;</code>
-and <code>&amp;</code> in your example code needs to be escaped.)</p>
+terrible format for writing about HTML syntax, because every single <code class='prettyprint'>&lt;</code>
+and <code class='prettyprint'>&amp;</code> in your example code needs to be escaped.)</p>
 
 <hr />
 
@@ -191,13 +193,13 @@ blank.) Normal paragraphs should not be indented with spaces or tabs.</p>
 that Markdown supports "hard-wrapped" text paragraphs. This differs
 significantly from most other text-to-HTML formatters (including Movable
 Type's "Convert Line Breaks" option) which translate every line break
-character in a paragraph into a <code>&lt;br /&gt;</code> tag.</p>
+character in a paragraph into a <code class='prettyprint'>&lt;br /&gt;</code> tag.</p>
 
-<p>When you <em>do</em> want to insert a <code>&lt;br /&gt;</code> break tag using Markdown, you
+<p>When you <em>do</em> want to insert a <code class='prettyprint'>&lt;br /&gt;</code> break tag using Markdown, you
 end a line with two or more spaces, then type return.</p>
 
-<p>Yes, this takes a tad more effort to create a <code>&lt;br /&gt;</code>, but a simplistic
-"every line break is a <code>&lt;br /&gt;</code>" rule wouldn't work for Markdown.
+<p>Yes, this takes a tad more effort to create a <code class='prettyprint'>&lt;br /&gt;</code>, but a simplistic
+"every line break is a <code class='prettyprint'>&lt;br /&gt;</code>" rule wouldn't work for Markdown.
 Markdown's email-style <a href="#blockquote">blockquoting</a> and multi-paragraph <a href="#list">list items</a>
 work best -- and look better -- when you format them with hard breaks.</p>
 
@@ -215,7 +217,7 @@ This is an H2
 -------------
 </code></pre>
 
-<p>Any number of underlining <code>=</code>'s or <code>-</code>'s will work.</p>
+<p>Any number of underlining <code class='prettyprint'>=</code>'s or <code class='prettyprint'>-</code>'s will work.</p>
 
 <p>Atx-style headers use 1-6 hash characters at the start of the line,
 corresponding to header levels 1-6. For example:</p>
@@ -242,10 +244,10 @@ determines the header level.) :</p>
 
 <h4>Blockquotes</h4>
 
-<p>Markdown uses email-style <code>&gt;</code> characters for blockquoting. If you're
+<p>Markdown uses email-style <code class='prettyprint'>&gt;</code> characters for blockquoting. If you're
 familiar with quoting passages of text in an email message, then you
 know how to create a blockquote in Markdown. It looks best if you hard
-wrap the text and put a <code>&gt;</code> before every line:</p>
+wrap the text and put a <code class='prettyprint'>&gt;</code> before every line:</p>
 
 <pre class='prettyprint'><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
 &gt; consectetuer adipiscing elit. Aliquam hendrerit mi posuere lectus.
@@ -255,7 +257,7 @@ wrap the text and put a <code>&gt;</code> before every line:</p>
 &gt; id sem consectetuer libero luctus adipiscing.
 </code></pre>
 
-<p>Markdown allows you to be lazy and only put the <code>&gt;</code> before the first
+<p>Markdown allows you to be lazy and only put the <code class='prettyprint'>&gt;</code> before the first
 line of a hard-wrapped paragraph:</p>
 
 <pre class='prettyprint'><code>&gt; This is a blockquote with two paragraphs. Lorem ipsum dolor sit amet,
@@ -267,7 +269,7 @@ id sem consectetuer libero luctus adipiscing.
 </code></pre>
 
 <p>Blockquotes can be nested (i.e. a blockquote-in-a-blockquote) by
-adding additional levels of <code>&gt;</code>:</p>
+adding additional levels of <code class='prettyprint'>&gt;</code>:</p>
 
 <pre class='prettyprint'><code>&gt; This is the first level of quoting.
 &gt;
@@ -383,7 +385,7 @@ Suspendisse id sem consectetuer libero luctus adipiscing.
 </code></pre>
 
 <p>If list items are separated by blank lines, Markdown will wrap the
-items in <code>&lt;p&gt;</code> tags in the HTML output. For example, this input:</p>
+items in <code class='prettyprint'>&lt;p&gt;</code> tags in the HTML output. For example, this input:</p>
 
 <pre class='prettyprint'><code>*   Bird
 *   Magic
@@ -440,7 +442,7 @@ sit amet, consectetuer adipiscing elit.
 *   Another item in the same list.
 </code></pre>
 
-<p>To put a blockquote within a list item, the blockquote's <code>&gt;</code>
+<p>To put a blockquote within a list item, the blockquote's <code class='prettyprint'>&gt;</code>
 delimiters need to be indented:</p>
 
 <pre class='prettyprint'><code>*   A list item with a blockquote:
@@ -474,7 +476,7 @@ line. To avoid this, you can backslash-escape the period:</p>
 <p>Pre-formatted code blocks are used for writing about programming or
 markup source code. Rather than forming normal paragraphs, the lines
 of a code block are interpreted literally. Markdown wraps a code block
-in both <code>&lt;pre&gt;</code> and <code>&lt;code&gt;</code> tags.</p>
+in both <code class='prettyprint'>&lt;pre&gt;</code> and <code class='prettyprint'>&lt;code&gt;</code> tags.</p>
 
 <p>To produce a code block in Markdown, simply indent every line of the
 block by at least 4 spaces or 1 tab. For example, given this input:</p>
@@ -515,7 +517,7 @@ end tell
 <p>A code block continues until it reaches a line that is not indented
 (or the end of the article).</p>
 
-<p>Within a code block, ampersands (<code>&amp;</code>) and angle brackets (<code>&lt;</code> and <code>&gt;</code>)
+<p>Within a code block, ampersands (<code class='prettyprint'>&amp;</code>) and angle brackets (<code class='prettyprint'>&lt;</code> and <code class='prettyprint'>&gt;</code>)
 are automatically converted into HTML entities. This makes it very
 easy to include example HTML source code using Markdown -- just paste
 it and indent it, and Markdown will handle the hassle of encoding the
@@ -540,7 +542,7 @@ it's also easy to use Markdown to write about Markdown's own syntax.</p>
 
 <h4>Horizontal Rules</h4>
 
-<p>You can produce a horizontal rule tag (<code>&lt;hr /&gt;</code>) by placing three or
+<p>You can produce a horizontal rule tag (<code class='prettyprint'>&lt;hr /&gt;</code>) by placing three or
 more hyphens, asterisks, or underscores on a line by themselves. If you
 wish, you may use spaces between the hyphens or asterisks. Each of the
 following lines will produce a horizontal rule:</p>
@@ -736,10 +738,10 @@ prose.</p>
 
 <h4>Emphasis</h4>
 
-<p>Markdown treats asterisks (<code>*</code>) and underscores (<code>_</code>) as indicators of
-emphasis. Text wrapped with one <code>*</code> or <code>_</code> will be wrapped with an
-HTML <code>&lt;em&gt;</code> tag; double <code>*</code>'s or <code>_</code>'s will be wrapped with an HTML
-<code>&lt;strong&gt;</code> tag. E.g., this input:</p>
+<p>Markdown treats asterisks (<code class='prettyprint'>*</code>) and underscores (<code class='prettyprint'>_</code>) as indicators of
+emphasis. Text wrapped with one <code class='prettyprint'>*</code> or <code class='prettyprint'>_</code> will be wrapped with an
+HTML <code class='prettyprint'>&lt;em&gt;</code> tag; double <code class='prettyprint'>*</code>'s or <code class='prettyprint'>_</code>'s will be wrapped with an HTML
+<code class='prettyprint'>&lt;strong&gt;</code> tag. E.g., this input:</p>
 
 <pre class='prettyprint'><code>*single asterisks*
 
@@ -769,7 +771,7 @@ the same character must be used to open and close an emphasis span.</p>
 <pre class='prettyprint'><code>un*frigging*believable
 </code></pre>
 
-<p>But if you surround an <code>*</code> or <code>_</code> with spaces, it'll be treated as a
+<p>But if you surround an <code class='prettyprint'>*</code> or <code class='prettyprint'>_</code> with spaces, it'll be treated as a
 literal asterisk or underscore.</p>
 
 <p>To produce a literal asterisk or underscore at a position where it
@@ -781,7 +783,7 @@ escape it:</p>
 
 <h4>Code</h4>
 
-<p>To indicate a span of code, wrap it with backtick quotes (<code>`</code>).
+<p>To indicate a span of code, wrap it with backtick quotes (<code class='prettyprint'>`</code>).
 Unlike a pre-formatted code block, a code span indicates code within a
 normal paragraph. For example:</p>
 
@@ -861,11 +863,11 @@ for links, allowing for two styles: <em>inline</em> and <em>reference</em>.</p>
 <p>That is:</p>
 
 <ul>
-<li>An exclamation mark: <code>!</code>;</li>
-<li>followed by a set of square brackets, containing the <code>alt</code>
+<li>An exclamation mark: <code class='prettyprint'>!</code>;</li>
+<li>followed by a set of square brackets, containing the <code class='prettyprint'>alt</code>
 attribute text for the image;</li>
 <li>followed by a set of parentheses, containing the URL or path to
-the image, and an optional <code>title</code> attribute enclosed in double
+the image, and an optional <code class='prettyprint'>title</code> attribute enclosed in double
 or single quotes.</li>
 </ul>
 
@@ -882,7 +884,7 @@ are defined using syntax identical to link references:</p>
 
 <p>As of this writing, Markdown has no syntax for specifying the
 dimensions of an image; if this is important to you, you can simply
-use regular HTML <code>&lt;img&gt;</code> tags.</p>
+use regular HTML <code class='prettyprint'>&lt;img&gt;</code> tags.</p>
 
 <hr />
 
@@ -928,7 +930,7 @@ will probably eventually start receiving spam.)</p>
 <p>Markdown allows you to use backslash escapes to generate literal
 characters which would otherwise have special meaning in Markdown's
 formatting syntax. For example, if you wanted to surround a word
-with literal asterisks (instead of an HTML <code>&lt;em&gt;</code> tag), you can use
+with literal asterisks (instead of an HTML <code class='prettyprint'>&lt;em&gt;</code> tag), you can use
 backslashes before the asterisks, like this:</p>
 
 <pre class='prettyprint'><code>\*literal asterisks\*

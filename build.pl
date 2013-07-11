@@ -10,7 +10,7 @@ use File::Basename;
 # Some metadata
 #
 
-my $sitename = "PLJNS.com";
+my $sitename = "Markablog";
 
 #
 # These are the base directories my engine uses
@@ -52,7 +52,7 @@ my $next        = 0; # counter used to make back and next button
 my $navlinks    = "<a href = 'index.html'>Index</a>";
 
 my $find = "{{sitename}}";
-my $replace = '"$sitename <small>The Homepage of My Mind</small>"';
+my $replace = '"$sitename <small>Simple Static Site Generator</small>"';
 $default_template =~ s/$find/$replace/ee;
 
 opendir( CSSDIR, $css_dir_name ) || warn "Error in opening dir $posts_dir_name\n";
@@ -107,7 +107,7 @@ foreach my $currentpage (@PAGES) {
         my $page_dir_escape = php_escapeshellarg($pages_dir_name . '/' . $currentpage);
         my $page_content = qx/.\/Markdown.pl $page_dir_escape/;
         
-        print PAGEHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2'>";
+        print PAGEHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2 well'>";
         print PAGEHTMLFILE $page_content;
         print PAGEHTMLFILE "</article></div>";
         print PAGEHTMLFILE $footer_template . "\n"; 
