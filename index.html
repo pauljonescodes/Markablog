@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<title>Markablog</title>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"><link href='css/01main.css' type='text/css' rel='stylesheet'>
+<link href='css/02bootstrap.min.css' type='text/css' rel='stylesheet'>
+<link href='css/03bootstrap-responsive.min.css' type='text/css' rel='stylesheet'>
+<link href='css/04normalize.css' type='text/css' rel='stylesheet'>
+<link href='css/05style.css' type='text/css' rel='stylesheet'>
+<link href='css/06more.css' type='text/css' rel='stylesheet'>
+</head>
+<body>
+<div class='container'>
+<!--[if lt IE 7]>
+<p class="chromeframe">
+
+You are using an <strong>outdated</strong> browser. Please 
+<a href="http://browsehappy.com/">upgrade your browser</a> or 
+<a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> 
+to improve your experience.
+
+</p>
+<![endif]-->
+
+<div class="row-fluid">
+        <div class="span8 offset2">
+            <div class="text-center"><h1>Markablog <small>Simple Static Site Generator</small></h1></div>
+            
+            <div class="text-center" style="padding-bottom:10px;">
+        
+                <a href = 'index.html'>Index</a> | <a href = 'Markup Syntax.html'>Markup Syntax</a>
+        
+            </div>
+
+        </div>
+        
+        <div class = "span2"></div>
+</div>
+<div class="row-fluid">
+    <article class="span8 offset2 well">
+
+<h2>Markablog Remarkably Simple Blogging <small><a href = '20130410Readme.html'>April 10th, 2013</a></small></h2>
+
+<h3>Overview</h3>
+
+<p>This script accepts Markdown as input and builds a blog
+style website.</p>
+
+<p>Everything is an asset, the effort for every task is distilled.</p>
+
+<p>It's unique in that it allows you to not do very much to
+dramatically change the site. Here's why:</p>
+
+<ul>
+<li>Anything you put in the posts directory will become a post in the index.</li>
+<li>Anything you put in the pages directory will become a page in the navbar.</li>
+<li>Anything you put in the CSS directory will be come a stylesheet for everything.</li>
+<li>Any word you write will be beautifully styled thanks to <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>.</li>
+<li><p>Any code you write will be beautifully highlighted thanks to <a href="http://code.google.com/p/google-code-prettify/">Prettyprint</a>.</p>
+
+<pre class='prettyprint'><code>System.out.println("Hello world!");
+</code></pre></li>
+<li><p>Any math you write will be beautifully rendered thanks to <a href="http://www.mathjax.org">MathJax</a>.</p></li>
+</ul>
+
+<p>$$e^{i \pi} + 1 = 0$$</p>
+
+<h3>Quick start</h3>
+
+<p>You should download the source, place Markdown files in the posts
+directory, and run build.</p>
+
+<p>If you'd like to sort your posts, you need to have your naming format
+be alphanumerically and lexicographically sortable. The naming standard
+that's built into Markable is <code class='prettyprint'>[YEARMNDY]["Title"].md</code>.</p>
+
+<p>If you'd like the date displayed in your post, you'll need to use something
+like this:</p>
+
+<pre class='prettyprint'><code>This is the title of my post {{meta}}
+-------------------------------------
+</code></pre>
+
+<p>The <code class='prettyprint'>{{meta}}</code> will be replaced by a date and a clickable link to a page
+with only this post.</p>
+
+<p>Replace the metadata in <code class='prettyprint'>build.pl</code> to get a custom title for your site.</p>
+
+<p>The title and URL of every post in the browser is determined by the filename,
+everything else in the file is determined by you.</p>
+
+<p>To edit the About page, edit <code class='prettyprint'>about.md</code>.</p>
+
+<h3>Design Goals</h3>
+
+<p>The design goals of this project are the same as the design goals of my website:</p>
+
+<ul>
+<li>Simple, easy, lightweight</li>
+<li>Scalable, fast web-hosting</li>
+<li>Custom domain name</li>
+<li>Cheap or free</li>
+<li>Write posts in Markdown alone</li>
+</ul>
+
+<h3>Comparable Tools</h3>
+
+<p>I do not at all claim to have feature parity with these services,
+but I looked into these static blog generators before deciding to 
+write my own:</p>
+
+<ul>
+<li><a href="http://ruhoh.com">Ruhoh</a></li>
+<li><a href="https://github.com/mojombo/jekyll">Jekyll</a></li>
+<li><a href="http://octopress.org">Octopress</a></li>
+</ul>
+
+<h3>To do</h3>
+
+<ul>
+<li>Categories
+<ul>
+<li>Each folder in the posts directory will be a category</li>
+<li>Each category will have its own index</li>
+</ul></li>
+<li>Tags
+<ul>
+<li>A hashtag implementation <em>a la</em> Twitter</li>
+<li>A hashtag in a post will enter that post into a
+ordered list in a unified <code class='prettyprint'>Tags.html</code> page.</li>
+</ul></li>
+<li>Site map
+<ul>
+<li>A linked list of every post</li>
+</ul></li>
+</ul>
+
+    
+    </article>
+    
+    <div class = "span2"></div>
+</div><footer id="footer">
+		<p class='text-center'>Markablog, 2013</p>
+</footer>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-1.9.1.min.js"></script>
+
+<script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script>
+
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-XXXXXX', '');
+  ga('send', 'pageview');
+
+</script>
+-->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+</div>
+</body>
+</html>

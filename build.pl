@@ -107,7 +107,7 @@ foreach my $currentpage (@PAGES) {
         my $page_dir_escape = php_escapeshellarg($pages_dir_name . '/' . $currentpage);
         my $page_content = qx/.\/Markdown.pl $page_dir_escape/;
         
-        print PAGEHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2'>";
+        print PAGEHTMLFILE "<div class = 'row-fluid'><article class='span8 offset2 well'>";
         print PAGEHTMLFILE $page_content;
         print PAGEHTMLFILE "</article></div>";
         print PAGEHTMLFILE $footer_template . "\n"; 

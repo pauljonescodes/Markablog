@@ -11,13 +11,14 @@ to improve your experience.
 
 <div class="row-fluid">
         <div class="span8 offset2">
-            <div class="page header"><h1>{{sitename}}</h1></div>
+            <div class="text-center"><h1>{{sitename}}</h1></div>
             
-            <div class="text-center">
+            <div class="text-center" style="padding-bottom:10px;">
         
                 {{nav}}
         
             </div>
+
         </div>
         
         <div class = "span2"></div>

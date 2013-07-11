@@ -986,7 +986,7 @@ sub _DoCodeSpans {
  			$c =~ s/^[ \t]*//g; # leading whitespace
  			$c =~ s/[ \t]*$//g; # trailing whitespace
  			$c = _EncodeCode($c);
-			"<code>$c</code>";
+			"<code class='prettyprint'>$c</code>";
 		@egsx;
 
 	return $text;

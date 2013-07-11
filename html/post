@@ -1,5 +1,5 @@
 <div class="row-fluid">
-    <article class="span8 offset2">
+    <article class="span8 offset2 well">
 
 {{content}}
     
