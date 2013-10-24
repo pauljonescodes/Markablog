@@ -153,7 +153,7 @@ print INDEXHTMLFILE $default_template . "\n";
 # Now things get serious, start building blog from posts
 #
 
-foreach my $currentpost (reverse(@POSTS)) {
+foreach my $currentpost (reverse sort(@POSTS)) {
 	if ($currentpost ne "." && $currentpost ne ".." && $currentpost ne ".DS_Store") {
 		$post_count++;
 		
